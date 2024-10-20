@@ -12,6 +12,6 @@ export const registerUser= async(data: UserData) => {
         cache: "no-store"
     });
     const userInfo= await res.json();
-    console.log("API Response:", userInfo);
+    // console.log("API Response:", userInfo);
     return userInfo
 } 

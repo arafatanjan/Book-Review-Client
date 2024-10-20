@@ -51,7 +51,7 @@ export default function AddReview() {
     const email = userInfo.email;
 
     const form = e.currentTarget as HTMLFormElement;
-    console.log(form);
+    // console.log(form);
   
     //  const author = form.author.value;
     //  const title = form.title.value;
@@ -59,7 +59,7 @@ export default function AddReview() {
     //  const rating = parseInt(form.rating.value, 10);
 
     const data: ReviewData = { email, title, author, reviewText, rating };
-    console.log(data);
+    // console.log(data);
 
     // Confirm before adding the review
     if (!window.confirm("Are you sure you want to add this item?")) {
@@ -67,7 +67,7 @@ export default function AddReview() {
     }
 
     // Post the review to the backend
-    await fetch("http://localhost:5000/review", {
+    await fetch("https://book-review-server-two.vercel.app/review", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

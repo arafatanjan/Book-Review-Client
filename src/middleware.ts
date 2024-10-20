@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
     const isPublicPath = path === './login' || path === './register'  ;
     const userInfo =await getUserInfo()
-    console.log(userInfo.id)
+    // console.log(userInfo.id)
 
     if(userInfo.id){
         return NextResponse.redirect(new URL('/dashboard', request.url))

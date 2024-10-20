@@ -5,7 +5,7 @@ const Reviews = async () => {
   const BookReview = dynamic(() => import("@/components/ui/BookReview"), {
     ssr: false,
   });
-  const res= await fetch("http://localhost:5000/reviews",{
+  const res= await fetch("https://book-review-server-two.vercel.app/reviews",{
     cache:"no-store"
   });
   const blogs= await res.json();

@@ -10,22 +10,24 @@ import {
   Alert,
 } from "@mui/material";
 import { getUserInfo } from "@/services/auth.services";
+import { useRouter } from 'next/navigation'; 
 
 export default function EditProfile() {
   const [showToast, setShowToast] = useState(false);
   const [loading, setLoading] = useState(true);
   const formRef = useRef<HTMLFormElement>(null);
   const [initialUserInfo, setInitialUserInfo] = useState({ username: "", email: "" });
+  const router = useRouter(); 
 
   // Fetch user info once and populate form
   const userInfo = getUserInfo();
   useEffect(() => {
     const fetchUserInfo = async () => {
       
-      console.log(userInfo)
+      // console.log(userInfo)
       if (userInfo) {
         setInitialUserInfo(userInfo);
-        console.log(initialUserInfo)
+        // console.log(initialUserInfo)
       }
       setLoading(false);
     };
@@ -49,7 +51,7 @@ export default function EditProfile() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/user/${userInfo?.email}`, {
+      const response = await fetch(`https://book-review-server-two.vercel.app/user/${userInfo?.email}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -62,9 +64,10 @@ export default function EditProfile() {
       }
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       setShowToast(true);
-      form.reset(); // Reset form after successful submission
+      form.reset(); 
+      router.refresh();
     } catch (error) {
       console.error("Error updating profile:", error);
     }

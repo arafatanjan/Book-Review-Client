@@ -45,7 +45,7 @@ const DashboardProfile = ({ blogs }: { blogs: Review[] }) => {
     if (!window.confirm('Are you sure you want to delete this item?')) {
       return;
     }
-    await fetch(`http://localhost:5000/review/${id}`, {
+    await fetch(`https://book-review-server-two.vercel.app/review/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -59,7 +59,7 @@ const DashboardProfile = ({ blogs }: { blogs: Review[] }) => {
   };
 
   return (
-    <Container>
+    <Container sx={{ mt: 8 }}>
       {/* Profile Section */}
       <Grid container justifyContent="center" sx={{ mb: 6 }}>
         <Grid item xs={12} md={6}>

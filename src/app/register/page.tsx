@@ -55,11 +55,11 @@ const RegisterPage = () => {
 
     try {
       const res = await registerUser(data);
-      console.log(res)
+      // console.log(res)
       if (res.success) {
         alert(res.message);
         // router.push("/login");
-        console.log(res)
+        // console.log(res)
         router.refresh();
       }
     } catch (err: any) {
@@ -72,7 +72,7 @@ const RegisterPage = () => {
      
     try {
       const res = await loginUser(data);
-      console.log(res);
+      // console.log(res);
       // if (res.success) {
       //   alert(res.message);
       //   localStorage.setItem('accessToken', res.accessToken)

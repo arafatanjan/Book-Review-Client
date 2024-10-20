@@ -57,7 +57,7 @@ const Login: React.FC = () => {
   const onSubmit = async (data: UserData) => {
     try {
       const res = await loginUser(data);
-      console.log(res);
+      // console.log(res);
 
       //   localStorage.setItem('accessToken', res.accessToken)
 
@@ -80,11 +80,11 @@ const Login: React.FC = () => {
 
     try {
       const res = await registerUser(data);
-      console.log(res);
+      // console.log(res);
       if (res.success) {
         alert(res.message);
         // router.push("/login");
-        console.log(res);
+        // console.log(res);
         router.refresh();
       }
     } catch (err: any) {

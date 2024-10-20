@@ -18,17 +18,17 @@ const Sidebar = () => {
 
   // Sidebar content
   const drawerContent = (
-    <Box sx={{ width: 250 }}>
+    <Box sx={{ width: 250,  }}>
       <Typography variant="h6" sx={{ my: 2, textAlign: 'center' }}>
         Sidebar Menu
       </Typography>
       <List>
-        <Link href="/dashboard" passHref>
+        <Link href="/" passHref>
           <ListItem>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary="User Profile" />
+            <ListItemText primary="Home" />
           </ListItem>
         </Link>
         <Link href="/dashboard/addreview" passHref>
@@ -64,11 +64,11 @@ const Sidebar = () => {
         <MenuIcon />
       </IconButton>
 
-      {/* Permanent drawer for larger screens */}
+      {/*  larger screens */}
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: 'none', md: 'block' }, // Hide on mobile, show on desktop
+          display: { xs: 'none', md: 'block' }, 
           width: 250,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
@@ -81,16 +81,16 @@ const Sidebar = () => {
         {drawerContent}
       </Drawer>
 
-      {/* Temporary drawer for mobile */}
+      {/*  for mobile */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better performance on mobile
+          keepMounted: true, 
         }}
         sx={{
-          display: { xs: 'block', md: 'none' }, // Show on mobile, hide on desktop
+          display: { xs: 'block', md: 'none' }, 
           '& .MuiDrawer-paper': {
             width: 250,
             boxSizing: 'border-box',

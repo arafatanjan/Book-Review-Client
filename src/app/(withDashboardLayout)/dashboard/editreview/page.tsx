@@ -11,8 +11,9 @@ import {
   Rating,
 } from "@mui/material";
 import { getUserInfo } from "@/services/auth.services";
-import { toast, ToastContainer } from 'react-toastify';import 'react-toastify/dist/ReactToastify.css';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 import { Review } from "@/types/review";
 
 interface UserInfo {
@@ -21,48 +22,37 @@ interface UserInfo {
   
   
   interface ReviewData {
-    email?: string;
+    _id?: string;
+    // email?: string;
     title: string;
     author: string;
     reviewText: string;
     rating: number;
   }
 
-const Editpage = ({blog}: {blog: Review}) => {
+const Editpage = ({blog}: {blog:  ReviewData}) => {
+ console.log(blog);
     const [title, setTitle] = useState<string>(blog.title);
-    const [email, setEmail] = useState<string>(blog.email ?? "");
+    // const [email, setEmail] = useState<string>(blog.email ?? "");
   const [author, setAuthor] = useState<string>(blog.author);
   const [reviewText, setReviewText] = useState<string>(blog.reviewText);
   const [rating, setRating] = useState<number>(blog.rating);
-  console.log(blog._id)
+//   console.log(blog._id)
   
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     
         const token = localStorage.getItem("token");
     
-        // Form data
-    
-        // const email = userInfo.email;
-    
-        // const form = e.currentTarget as HTMLFormElement;
-        //console.log(form);
-      
-        //  const author = form.author.value;
-        //  const title = form.title.value;
-        //  const reviewText = form.reviewText.value;
-        //  const rating = parseInt(form.rating.value, 10);
-    
         const data: ReviewData = { title, author, reviewText, rating };
-        console.log(data);
-    
-        // Confirm before adding the review
+        // console.log(data);
+
         if (!window.confirm("Are you sure you want to add this item?")) {
           return;
         }
     
-        // Post the review to the backend
-         await fetch(`http://localhost:5000/review/update/${blog._id}`, {
+        
+         await fetch(`https://book-review-server-two.vercel.app/review/update/${blog._id}`, {
            method: "PATCH",
            headers: {
              "Content-type": "application/json",
@@ -87,10 +77,9 @@ const Editpage = ({blog}: {blog: Review}) => {
               progress: undefined,
             });
     
-             console.log(data);
+            //  console.log(data);
             localStorage.setItem("token", data?.token);
            
-            //  form.reset();
           });
       };
 
@@ -99,7 +88,7 @@ const Editpage = ({blog}: {blog: Review}) => {
        <ToastContainer /> 
       <Box sx={{ mt: 8 }}>
         <Typography variant="h4" gutterBottom>
-          Add Book Review
+          Edit Book Review
         </Typography>
 
         <form onSubmit={handleSubmit}>

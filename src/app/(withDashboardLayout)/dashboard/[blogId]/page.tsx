@@ -15,10 +15,10 @@ interface BlogId {
   }
 
   const BlogPage = async ({ params }: BlogId) => {
-    console.log(params.blogId);
+    // console.log(params.blogId);
 
     
-     const res = await fetch(`http://localhost:5000/reviews/${params.blogId}`, {
+     const res = await fetch(`https://book-review-server-two.vercel.app/reviews/${params.blogId}`, {
        cache: 'no-store',
      });
     
@@ -29,7 +29,7 @@ interface BlogId {
   
     const blog: Blog = await res.json();
   
-    console.log(blog);
+    // console.log(blog);
 
     return (
         <div>

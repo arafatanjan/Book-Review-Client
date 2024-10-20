@@ -69,7 +69,7 @@ const Alledit = ({blog}: {blog:  ReviewData}) => {
           
              toast.success('Review submitted successfully!', {
               position: "top-right",
-               autoClose: 2000, 
+              autoClose: 2000, 
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,

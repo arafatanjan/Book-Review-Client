@@ -30,7 +30,7 @@ const BookReview = ({ blogs }: BookReviewProps) => {
         </Typography>
 
         {/* Search Input */}
-        <Box sx={{ margin: '20px', textAlign: 'center' }}>
+        <Box sx={{ margin: '40px', textAlign: 'center' }}>
           <TextField
             onChange={handleSearchChange}
             label="Search by title"

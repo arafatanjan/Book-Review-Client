@@ -85,7 +85,9 @@ const Login: React.FC = () => {
         alert(res.message);
         // router.push("/login");
         // console.log(res);
+        router.push("/login");
         router.refresh();
+         
       }
     } catch (err: any) {
       console.error(err.message);
@@ -222,6 +224,7 @@ const containerStyle: React.CSSProperties = {
   textAlign: "center",
   padding: "10px",
   width: "90%",
+  height: '68vh'
 };
 
 const toggleStyle: React.CSSProperties = {

@@ -61,6 +61,7 @@ const RegisterPage = () => {
         // router.push("/login");
         // console.log(res)
         router.refresh();
+         router.push("/login");
       }
     } catch (err: any) {
       // console.error(err.message);
@@ -82,8 +83,9 @@ const RegisterPage = () => {
       if (res?.success) {
         alert(res.message);
         storeUserInfo({ accessToken: res?.accessToken });
+        router.push("/dashboard");
         router.refresh();
-        // router.push("/dashboard");
+         
      }
     } catch (err: any) {
       // console.error(err.message);
@@ -214,6 +216,7 @@ const containerStyle: React.CSSProperties = {
   textAlign: "center",
   padding: "10px",
   width: "90%",
+  height: '68vh'
 };
 
 const toggleStyle: React.CSSProperties = {

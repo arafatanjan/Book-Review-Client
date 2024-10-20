@@ -1,4 +1,4 @@
- import Alleditpage from "../alledit/page";
+import Alledit from "@/components/Shared/Alledit";
 
 
 interface BlogId {
@@ -34,8 +34,7 @@ interface BlogId {
 
     return (
         <div>
-            {/* <Editpage blog={blog}/> */}
-            <Alleditpage blog={blog}/>
+            <Alledit blog={blog}/>
         </div>
     );
 };

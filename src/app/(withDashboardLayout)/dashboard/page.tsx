@@ -1,15 +1,23 @@
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
+import DashboardProfile from "@/components/ui/DashboardProfile";
+import dynamic from "next/dynamic";
 
+const Dashboardpage =async () => {
+  const DashboardProfile = dynamic(() => import("@/components/ui/DashboardProfile"), {
+    ssr: false,
+  });
+  
+  const res= await fetch("http://localhost:5000/reviews",{
+    cache:'no-store'
+  });
+  const blogs= await res.json();
+  
 
-const Dashboardpage = async () => {
-    const session= await getServerSession(authOptions);
-    console.log(session);
-    return (
-        <div>
-            <h2 style={{marginTop:"100px"}}>Welcome {session?.user?.name}</h2>
-        </div>
-    );
+  return (
+    <div>
+      {/* <h2 style={{ marginTop: '100px' }}>Welcome user</h2> */}
+      <DashboardProfile  blogs={blogs}/>
+    </div>
+  );
 };
 
 export default Dashboardpage;

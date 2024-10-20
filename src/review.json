@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "title": "The Pragmatic Programmer",
+      "author": "Andrew Hunt, David Thomas",
+      "rating": 5,
+      "review": "An excellent book that focuses on practical software development principles."
+    },
+    {
+      "id": 2,
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "rating": 4,
+      "review": "Great guide to writing clean, readable, and maintainable code."
+    },
+    {
+      "id": 3,
+      "title": "You Don't Know JS",
+      "author": "Kyle Simpson",
+      "rating": 4,
+      "review": "A deep dive into JavaScript that explains the tricky parts of the language."
+    },
+    {
+      "id": 4,
+      "title": "Eloquent JavaScript",
+      "author": "Marijn Haverbeke",
+      "rating": 5,
+      "review": "A great introduction to JavaScript, with helpful exercises."
+    },
+    {
+      "id": 5,
+      "title": "Refactoring",
+      "author": "Martin Fowler",
+      "rating": 3,
+      "review": "Good concepts but requires some programming background to fully understand."
+    }
+  ]
+  

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { registerUser } from "@/utils/actions/registerUser";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/utils/actions/loginUser";
+import { storeUserInfo } from '@/services/auth.services';
 
 export type UserData = {
   username?: string;
@@ -53,12 +55,38 @@ const RegisterPage = () => {
 
     try {
       const res = await registerUser(data);
+      console.log(res)
       if (res.success) {
         alert(res.message);
-        router.push("/login");
+        // router.push("/login");
+        console.log(res)
+        router.refresh();
       }
     } catch (err: any) {
-      console.error(err.message);
+      // console.error(err.message);
+      throw new Error(err.message);
+    }
+  };
+
+  const onSubmitlog = async (data: UserData) => {
+     
+    try {
+      const res = await loginUser(data);
+      console.log(res);
+      // if (res.success) {
+      //   alert(res.message);
+      //   localStorage.setItem('accessToken', res.accessToken)
+      //   router.push("/");
+      //   //console.log( localStorage.setItem)
+      // }
+      if (res?.success) {
+        alert(res.message);
+        storeUserInfo({ accessToken: res?.accessToken });
+        router.refresh();
+        // router.push("/dashboard");
+     }
+    } catch (err: any) {
+      // console.error(err.message);
       throw new Error(err.message);
     }
   };
@@ -92,9 +120,10 @@ const RegisterPage = () => {
       {isRegister ? (
         <div>
           <p style={textStyle}>
-            There are many advantages to creating an account: faster payment
-            process, shipment tracking, and more.
+            There are many advantages to creating an account: Use dashboard for more features
           </p>
+
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
@@ -140,12 +169,15 @@ const RegisterPage = () => {
           <p style={textStyle}>
             If you have an account, sign in with your username or email address.
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+
+
+          <form onSubmit={handleSubmit(onSubmitlog)}>
             <input
               type="email"
               {...register("email")}
               placeholder="Email"
               className="input input-bordered"
+              style={inputStyle}
               required
             />
 
@@ -154,6 +186,7 @@ const RegisterPage = () => {
               type="password"
               placeholder="Email"
               className="input input-bordered"
+              style={inputStyle}
               required
             />
             <div style={{ textAlign: "left", marginBottom: "20px" }}>

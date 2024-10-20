@@ -23,30 +23,30 @@ const Sidebar = () => {
         Sidebar Menu
       </Typography>
       <List>
-        <Link href="/" passHref>
-          <ListItem component="a">
+        <Link href="/dashboard" passHref>
+          <ListItem>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="User Profile" />
           </ListItem>
         </Link>
-        <Link href="/about" passHref>
-          <ListItem  component="a">
+        <Link href="/dashboard/addreview" passHref>
+          <ListItem>
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
             <ListItemText primary="Add Review" />
           </ListItem>
         </Link>
-        <Link href="/contact" passHref>
+        {/* <Link href="/editreview" passHref>
           <ListItem  component="a">
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
             <ListItemText primary="Edit review" />
           </ListItem>
-        </Link>
+        </Link> */}
       </List>
     </Box>
   );

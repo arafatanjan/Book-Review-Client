@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { registerUser } from "@/utils/actions/registerUser";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/utils/actions/loginUser";
+import { storeUserInfo } from "@/services/auth.services";
+// import {Snackbar, Alert} from "@mui/material";
 
 export type UserData = {
   username?: string;
@@ -24,9 +26,10 @@ interface LoginFormData {
   password: string;
 }
 
-
 // Component starts here
 const Login: React.FC = () => {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const [isRegister, setIsRegister] = useState<boolean>(false);
   const [registerForm, setRegisterForm] = useState<RegisterFormData>({
     username: "",
@@ -52,19 +55,41 @@ const Login: React.FC = () => {
   const router = useRouter();
 
   const onSubmit = async (data: UserData) => {
-     
-
     try {
       const res = await loginUser(data);
       console.log(res);
-      if (res.success) {
+
+      //   localStorage.setItem('accessToken', res.accessToken)
+
+      if (res?.success) {
         alert(res.message);
-        localStorage.setItem('accessToken', res.accessToken)
-        router.push("/");
+        storeUserInfo({ accessToken: res?.accessToken });
+        router.push("/dashboard");
+        router.refresh();
+      } else {
+        setErrorMessage(res.message);
       }
     } catch (err: any) {
       console.error(err.message);
-      throw new Error(err.message);
+      throw new Error();
+    }
+  };
+
+  const onSubmitRgister = async (data: UserData) => {
+    // console.log(data);
+
+    try {
+      const res = await registerUser(data);
+      console.log(res);
+      if (res.success) {
+        alert(res.message);
+        // router.push("/login");
+        console.log(res);
+        router.refresh();
+      }
+    } catch (err: any) {
+      console.error(err.message);
+      throw new Error();
     }
   };
 
@@ -94,13 +119,21 @@ const Login: React.FC = () => {
         </h3>
       </div>
 
+      <p
+        style={{
+          color:"red",
+        }}
+      >
+        {errorMessage}
+      </p>
+
       {isRegister ? (
         <div>
           <p style={textStyle}>
             There are many advantages to creating an account: faster payment
             process, shipment tracking, and more.
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmitRgister)}>
             <input
               type="text"
               {...register("username")}
@@ -145,6 +178,7 @@ const Login: React.FC = () => {
           <p style={textStyle}>
             If you have an account, sign in with your username or email address.
           </p>
+         
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="email"
@@ -158,7 +192,7 @@ const Login: React.FC = () => {
             <input
               {...register("password")}
               type="password"
-              placeholder="Email"
+              placeholder="password"
               className="input input-bordered"
               style={inputStyle}
               required

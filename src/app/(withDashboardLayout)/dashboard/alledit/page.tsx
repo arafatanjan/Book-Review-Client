@@ -30,7 +30,7 @@ interface UserInfo {
     rating: number;
   }
 
-const Editpage = ({blog}: {blog:  ReviewData}) => {
+const Alleditpage = ({blog}: {blog:  ReviewData}) => {
  console.log(blog);
     const [title, setTitle] = useState<string>(blog.title);
     // const [email, setEmail] = useState<string>(blog.email ?? "");
@@ -150,4 +150,4 @@ const Editpage = ({blog}: {blog:  ReviewData}) => {
     );
 };
 
-export default Editpage;
+export default Alleditpage;

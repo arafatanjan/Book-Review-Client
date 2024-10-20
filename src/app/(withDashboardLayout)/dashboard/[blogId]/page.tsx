@@ -1,4 +1,5 @@
-import Editpage from "../editreview/page";
+ import Alleditpage from "../alledit/page";
+
 
 interface BlogId {
     params: {
@@ -33,7 +34,8 @@ interface BlogId {
 
     return (
         <div>
-            <Editpage blog={blog}/>
+            {/* <Editpage blog={blog}/> */}
+            <Alleditpage blog={blog}/>
         </div>
     );
 };

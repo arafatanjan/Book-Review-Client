@@ -39,21 +39,13 @@ const Sidebar = () => {
             <ListItemText primary="Add Review" />
           </ListItem>
         </Link>
-        {/* <Link href="/editreview" passHref>
-          <ListItem  component="a">
-            <ListItemIcon>
-              <ContactMailIcon />
-            </ListItemIcon>
-            <ListItemText primary="Edit review" />
-          </ListItem>
-        </Link> */}
       </List>
     </Box>
   );
 
   return (
     <>
-      {/* IconButton to open the sidebar on mobile */}
+      {/*  sidebar on mobile */}
       <IconButton
         color="inherit"
         aria-label="open drawer"

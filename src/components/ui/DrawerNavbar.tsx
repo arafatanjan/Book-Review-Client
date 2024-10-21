@@ -13,7 +13,7 @@ const DrawerNavbar = ({ handleDrawerToggle }: DrawerNavbarProps) => {
 
   const handleLogOut = () => {
     removeUser();
-    handleDrawerToggle(); // Close drawer on logout
+    handleDrawerToggle(); 
   };
 
   return (

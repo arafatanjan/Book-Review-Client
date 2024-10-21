@@ -4,12 +4,12 @@ import { Button, Container, Box, Typography } from '@mui/material';
 import { useRouter, useSearchParams } from 'next/navigation'; // Import new hooks from next/navigation
 
 export default function ReviewDetails() {
-  const router = useRouter(); // New router hook from next/navigation
-  const searchParams = useSearchParams(); // Get query parameters with useSearchParams
-  const id = searchParams.get('id'); // Retrieve the 'id' query param (or use any other parameter name)
+  const router = useRouter(); 
+  const searchParams = useSearchParams(); 
+  const id = searchParams.get('id'); 
 
   const handleDelete = async () => {
-    const token = localStorage.getItem('token'); // Retrieve JWT token from local storage
+    const token = localStorage.getItem('token'); 
 
     const res = await fetch(`/api/reviews/${id}`, {
       method: 'DELETE',

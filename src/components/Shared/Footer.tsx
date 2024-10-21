@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
           variant="body2"
           color="text.secondary"
           align="center"
-          sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' }, mt: 1 }} // Adjust text size and margin-top for mobile
+          sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' }, mt: 1 }} 
         >
           <Link href="/privacy-policy" color="inherit" underline="hover">
             Privacy Policy

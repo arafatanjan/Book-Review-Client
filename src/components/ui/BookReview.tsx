@@ -9,15 +9,15 @@ interface BookReviewProps {
 }
 
 const BookReview = ({ blogs }: BookReviewProps) => {
-  const [searchText, setSearchText] = useState<string>(''); // Type-safe state for search text
-  const [searchResult, setSearchResult] = useState<Review[]>(blogs); // Initialize with all blogs
+  const [searchText, setSearchText] = useState<string>(''); 
+  const [searchResult, setSearchResult] = useState<Review[]>(blogs); 
 
   // Handle search input change
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value.toLowerCase(); // Make search case insensitive
+    const value = event.target.value.toLowerCase(); 
     setSearchText(value);
 
-    // Filter blogs based on search text
+    
     const match = blogs.filter(blog => blog.title.toLowerCase().includes(value));
     setSearchResult(match);
   };
@@ -38,13 +38,13 @@ const BookReview = ({ blogs }: BookReviewProps) => {
             size="small"
             fullWidth
             sx={{ maxWidth: '400px' }}
-            value={searchText} // Controlled input
+            value={searchText} 
           />
         </Box>
 
         {/* Display search results */}
         <Grid container spacing={2}>
-          {searchResult.slice(0, 6).map((review) => (
+          {searchResult.map((review) => (
             <Grid item xs={12} sm={6} md={4} key={review._id}>
               <Card sx={{ mb: 2 }}>
                 <CardContent>

@@ -12,7 +12,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const AuthButton = dynamic(() => import('../ui/AuthButton'), { ssr: false });
 
-  // Toggle drawer state
+  // Toggle drawer 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -21,7 +21,7 @@ const Navbar = () => {
     <>
       <AppBar position="static">
         <Toolbar>
-          {/* Menu icon for mobile */}
+          {/*  for mobile */}
           <IconButton
             edge="start"
             color="inherit"
@@ -39,22 +39,11 @@ const Navbar = () => {
             </Link>
           </Typography>
 
-          {/* Menu buttons for desktop */}
+          {/* for desktop */}
           <AuthButton />
         </Toolbar>
       </AppBar>
 
-      {/* Drawer for mobile */}
-      {/* <Drawer
-        anchor="left"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-      >
-        <DrawerNavbar handleDrawerToggle={handleDrawerToggle} />
-      </Drawer> */}
     </>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { TextField, Container, Box, Typography, Card, CardContent, Rating, Grid } from '@mui/material';
+import { TextField, Container, Box, Typography, Card, CardContent, Rating, Grid,  Pagination, Stack  } from '@mui/material';
 import { Review } from "@/types/review";
 
 interface BookReviewProps {
@@ -10,7 +10,9 @@ interface BookReviewProps {
 
 const BookReview = ({ blogs }: BookReviewProps) => {
   const [searchText, setSearchText] = useState<string>(''); 
-  const [searchResult, setSearchResult] = useState<Review[]>(blogs); 
+  const [searchResult, setSearchResult] = useState<Review[]>(blogs);
+  const [page, setPage] = useState<number>(1);  
+  const rowsPerPage = 6; 
 
   // Handle search input change
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +22,15 @@ const BookReview = ({ blogs }: BookReviewProps) => {
     
     const match = blogs.filter(blog => blog.title.toLowerCase().includes(value));
     setSearchResult(match);
+    setPage(1);
+  };
+
+  // Calculation of reviews to display based on the current page
+  const paginatedReviews = searchResult.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
+  // Handle page change
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
   };
 
   return (
@@ -44,7 +55,7 @@ const BookReview = ({ blogs }: BookReviewProps) => {
 
         {/* Display search results */}
         <Grid container spacing={2}>
-          {searchResult.map((review) => (
+          {paginatedReviews.map((review) => (
             <Grid item xs={12} sm={6} md={4} key={review._id}>
               <Card sx={{ mb: 2 }}>
                 <CardContent>
@@ -59,6 +70,15 @@ const BookReview = ({ blogs }: BookReviewProps) => {
             </Grid>
           ))}
         </Grid>
+        {/* Pagination Controls */}
+        <Stack spacing={2} alignItems="center" sx={{ mt: 4 }}>
+          <Pagination
+            count={Math.ceil(searchResult.length / rowsPerPage)} // Total number of pages
+            page={page}
+            onChange={handlePageChange}
+            color="primary"
+          />
+        </Stack>
       </Box>
     </Container>
   );
